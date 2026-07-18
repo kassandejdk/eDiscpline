@@ -1,0 +1,40 @@
+name: eDiscipline
+description: App de discipline financière et personnelle
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  shared_preferences: ^2.2.2
+  intl: ^0.20.2
+  fl_chart: ^0.65.0
+  uuid: ^4.2.1
+  provider: ^6.1.1
+  get: ^4.7.3
+  google_fonts: ^8.1.0
+  flutter_local_notifications: ^18.0.1
+  timezone: ^0.9.4
+  flutter_timezone: ^3.0.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+  flutter_launcher_icons: ^0.9.2
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/img/app_icon.png
+
+flutter_icons:
+  android: true
+  ios: false
+  image_path: "assets/img/app_icon.png"
+  adaptive_icon_background: "#0D1B3E"
+  adaptive_icon_foreground: "assets/img/app_icon_fg.png"
