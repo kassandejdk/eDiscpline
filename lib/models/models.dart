@@ -108,7 +108,55 @@ class MonthlyBudget {
             .toList(),
       );
 }
+class YearlyReport {
+  final int year;
+  final double totalBudget;
+  final double totalSpent;
+  final Map<int, double> monthlySpent;   // mois (1-12) → dépensé
+  final Map<int, double> monthlyBudget;  // mois (1-12) → prévu
+  final Map<String, double> byCategory;  // nom → dépensé annuel
+  final Map<String, String> categoryIcons;
 
+  YearlyReport({
+    required this.year,
+    required this.totalBudget,
+    required this.totalSpent,
+    required this.monthlySpent,
+    required this.monthlyBudget,
+    required this.byCategory,
+    required this.categoryIcons,
+  });
+
+  double get balance => totalBudget - totalSpent;
+  bool get isPositive => balance >= 0;
+
+  double get averageMonthly {
+    if (monthlySpent.isEmpty) return 0;
+    return monthlySpent.values.fold(0.0, (a, b) => a + b) /
+        monthlySpent.length;
+  }
+
+  int? get bestMonth {
+    if (monthlySpent.isEmpty) return null;
+    return monthlySpent.entries
+        .reduce((a, b) => a.value <= b.value ? a : b)
+        .key;
+  }
+
+  int? get worstMonth {
+    if (monthlySpent.isEmpty) return null;
+    return monthlySpent.entries
+        .reduce((a, b) => a.value >= b.value ? a : b)
+        .key;
+  }
+
+  /// Catégories triées par dépense décroissante.
+  List<MapEntry<String, double>> get sortedCategories {
+    final list = byCategory.entries.toList()
+      ..sort((a, b) => b.value.compareTo(a.value));
+    return list;
+  }
+}
 class DailyTask {
   String id;
   String title;
